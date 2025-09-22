@@ -1938,14 +1938,10 @@
   <section class="home-section">
     <!-- Container para o vídeo de fundo -->
     <div class="video-background">
-      <!-- Placeholder enquanto não temos o vídeo -->
-      <div class="video-placeholder">
-        <!--Quando tiver o vídeo, substitua o placeholder acima por: -->
-        <video autoplay muted loop>
-          <source src="assets/Home exemplo.mp4" type="video/mp4">
-          Seu navegador não suporta vídeos HTML5.
-        </video>
-      </div>
+      <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="">
+        <source src="assets/Home exemplo.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos HTML5.
+      </video>
     </div>
     <div class="logo-container">
       <img src="assets/LOGO-2-SFUNDO.png" alt="Diversart Logo" class="logo">
@@ -2531,6 +2527,39 @@
 
     // Quando estiver pronto para implementar a API do Instagram, descomente a linha abaixo
     // fetchInstagramPosts();
+
+    // Garantir reprodução automática do vídeo em dispositivos móveis
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.querySelector('video');
+      if (video) {
+        // Tenta iniciar o vídeo automaticamente
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            // Reprodução automática iniciada com sucesso
+            console.log('Reprodução automática do vídeo iniciada com sucesso');
+          })
+          .catch(error => {
+            // Reprodução automática falhou, tenta novamente com interação do usuário
+            console.warn('Reprodução automática bloqueada pelo navegador:', error);
+            
+            // Adiciona um evento de toque para iniciar o vídeo
+            document.addEventListener('touchstart', function() {
+              video.play();
+              // Remove o evento após o primeiro toque
+              this.removeEventListener('touchstart', arguments.callee);
+            }, { once: true });
+          });
+        }
+        
+        // Garante que o vídeo continue em loop
+        video.addEventListener('ended', function() {
+          this.currentTime = 0;
+          this.play();
+        }, false);
+      }
+    });
 
     // ===== LIGHTBOX =====
     let lightboxImages = [];
