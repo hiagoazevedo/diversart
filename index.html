@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diversart</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,12 +76,9 @@
     
     .logo-container {
       position: absolute;
-      top: -80px;
-      left: 5%;
+      top: -15%;
+      left: 4.5%;
       z-index: 10;
-      /* Suporte para safe area do iPhone */
-      padding-top: env(safe-area-inset-top);
-      padding-left: env(safe-area-inset-left);
     }
 
     .logo {
@@ -138,7 +135,7 @@
     /* Responsividade */
     @media (max-width: 1024px) {
       .logo-container {
-        top: -60px;
+        top: -10%;
         left: 2%;
       }
 
@@ -165,11 +162,6 @@
       .home-section {
         height: 100vh;
         min-height: 100vh;
-        /* Suporte para safe area do iPhone */
-        padding-top: env(safe-area-inset-top);
-        padding-left: env(safe-area-inset-left);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: env(safe-area-inset-bottom);
       }
 
       .video-background {
@@ -185,11 +177,9 @@
       }
 
       .logo-container {
-        top: 20px;
-        left: 20px;
-        /* Ajuste específico para iPhone com notch */
-        top: max(50px, env(safe-area-inset-top));
-        left: max(20px, env(safe-area-inset-left));
+        top: 8%;
+        left: 1%;
+        transform: translateX(0);
       }
 
       .logo {
@@ -197,14 +187,10 @@
       }
 
       .content-container {
-        bottom: 40px;
-        left: 75px;
-        right: 30px;
+        bottom: 8%;
+        left: 8%;
+        right: 5%;
         max-width: none;
-        /* Ajuste para safe area */
-        bottom: max(40px, env(safe-area-inset-bottom));
-        left: max(75px, calc(env(safe-area-inset-left) + 55px));
-        right: max(30px, env(safe-area-inset-right));
       }
 
       .main-text h1 {
@@ -216,11 +202,6 @@
       .home-section {
         height: 100vh;
         min-height: 100vh;
-        /* Suporte para safe area do iPhone */
-        padding-top: env(safe-area-inset-top);
-        padding-left: env(safe-area-inset-left);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: env(safe-area-inset-bottom);
       }
 
       .video-background {
@@ -236,21 +217,14 @@
       }
 
       .logo-container {
-        top: 20px;
-        left: -20px;
-        /* Ajuste específico para iPhone com notch */
-        top: max(50px, env(safe-area-inset-top));
-        left: max(-20px, calc(env(safe-area-inset-left) - 20px));
+        top: 10%;
+        left: -7%;
       }
 
       .content-container {
-        left: 35px;
-        right: 20px;
-        bottom: 30px;
-        /* Ajuste para safe area */
-        left: max(35px, calc(env(safe-area-inset-left) + 15px));
-        right: max(20px, env(safe-area-inset-right));
-        bottom: max(30px, env(safe-area-inset-bottom));
+        left: 6%;
+        right: 4%;
+        bottom: 6%;
       }
 
       .main-text h1 {
@@ -262,24 +236,6 @@
       }
     }
 
-    /* Media query específico para iPhone 13 Pro e dispositivos com notch */
-    @media (max-width: 428px) and (max-height: 926px) and (-webkit-device-pixel-ratio: 3) {
-      .logo-container {
-        top: max(30px, env(safe-area-inset-top));
-        left: max(10px, env(safe-area-inset-left));
-      }
-
-      .logo {
-        height: 50vh;
-        max-height: 400px;
-      }
-
-      .content-container {
-        left: max(20px, calc(env(safe-area-inset-left) + 10px));
-        right: max(20px, env(safe-area-inset-right));
-        bottom: max(40px, env(safe-area-inset-bottom));
-      }
-    }
 
     /* ===== SEÇÃO SOBRE NÓS ===== */
     .about-section {
