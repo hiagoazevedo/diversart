@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diversart</title>
+  <!-- Preload da fonte para carregamento prioritário -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"></noscript>
+  
+  <!-- Preconnect para otimizar conexões -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon-branco.ico">
   <style>
     /* ===== VARIÁVEIS CSS ROOT ===== */
@@ -21,7 +25,7 @@
       --background-medium: #e0e0e0;
       
       /* Fontes */
-      --font-family: 'Montserrat', sans-serif;
+      --font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       --font-weight-light: 300;
       --font-weight-regular: 400;
       --font-weight-semibold: 600;
@@ -36,6 +40,16 @@
     body {
       font-family: var(--font-family);
       overflow-x: hidden;
+      /* Otimização de renderização de fontes */
+      font-display: swap;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Transição suave quando a fonte Montserrat carregar */
+    .fonts-loaded body {
+      font-family: 'Montserrat', var(--font-family);
     }
 
     .home-section {
@@ -2298,7 +2312,7 @@
                   </picture>
                 </div>
                 <div class="carousel-item">
-                  <picture></picture>
+                  <picture>
                     <source srcset="assets/optimized/AREA-EXTERNA-2.webp" type="image/webp">
                     <img src="assets/AREA-EXTERNA-2.jpg" alt="Área Externa 2">
                   </picture>
@@ -2542,6 +2556,14 @@
   </div>
 
   <script>
+    // ===== OTIMIZAÇÃO DE FONTES =====
+    // Garantir que a fonte seja carregada de forma assíncrona
+    if ('fonts' in document) {
+      document.fonts.ready.then(function() {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    }
+
     // ===== CAROUSEL =====
     let carouselStates = {
       mesasCarousel: 0,
